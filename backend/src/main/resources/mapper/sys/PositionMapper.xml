@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joe.sys.mapper.PositionMapper">
+
+    <!-- 批量导入的实现 -->
+    <insert id="addBatchPosition">
+        insert into `position` (id,x,y,z,stay,`timestamp`,batch)
+        values
+        <foreach collection="positionList" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.x},
+            #{item.y},
+            #{item.z},
+            #{item.stay},
+            #{item.timestamp},
+            #{item.batch}
+            )
+        </foreach>
+    </insert>
+</mapper>

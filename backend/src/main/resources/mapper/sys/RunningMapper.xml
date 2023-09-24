@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joe.sys.mapper.RunningMapper">
+
+    <insert id="addBatchRunning">
+        insert into `running` (id,accx,accy,accz,gyroscopex,gyroscopey,gyroscopez,stay,`timestamp`,batch)
+        values
+        <foreach collection="runningList" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.accx},
+            #{item.accy},
+            #{item.accz},
+            #{item.gyroscopex},
+            #{item.gyroscopey},
+            #{item.gyroscopez},
+            #{item.stay},
+            #{item.timestamp},
+            #{item.batch}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="addBatchResult">
+        insert into `result` (xr, yr, arg, error, cdfx, cdfy, perror)
+        values
+        <foreach collection="resultList" item="item" separator=",">
+            (
+            #{item.xr},
+            #{item.yr},
+            #{item.arg},
+            #{item.error},
+            #{item.cdfx},
+            #{item.cdfy},
+            #{item.perror}
+            )
+        </foreach>
+    </insert>
+</mapper>
